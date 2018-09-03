@@ -1,0 +1,51 @@
+﻿<Window x:Class="SystemPr.Course.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:SystemPr.Course.Controls"
+        Title="MainWindow" Height="600" Width="800" Name="mainWnd" >
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Menu x:Name="menu">
+                <MenuItem>
+                    <MenuItem.Header>File</MenuItem.Header>
+                    <MenuItem Name="ItemOpenFile" Header="Open File" InputGestureText="Ctrl+O" Click="MenuItemClick" />
+                    <MenuItem Name="ItemOpenFiles" Header="Open Files.." Click="MenuItemClick" />
+                    <MenuItem Name="ItemSave" Header="Save" InputGestureText="Ctrl+S" Click="MenuItemClick" 
+                              IsEnabled="{Binding ElementName=ItemSaveAs, Path=IsEnabled}"
+                              />
+                    <MenuItem Name="ItemSaveAs" Header="SaveAs.." InputGestureText="Ctrl+Alt+S" Click="MenuItemClick"
+                              IsEnabled="{Binding ElementName=TabControl, Path=SelectedValue.IsSave, 
+                        Converter={StaticResource RevertBoolConvert}}"
+                              />
+
+
+                </MenuItem>
+                <MenuItem>
+                    <MenuItem.Header>All</MenuItem.Header>
+                    <MenuItem Name="ItemSettings"  Header="Settings" Click="MenuItemClick" />
+                </MenuItem>
+                <MenuItem>
+                    <MenuItem.Header>Help</MenuItem.Header>
+                    <MenuItem Name="ItemAbout"  Header="About" Click="MenuItemClick" />
+                </MenuItem>
+
+                <!--<MenuItem Name="createsem" Header="CreateSem" Click="MenuItemClick" Margin="20 0 0 0" />
+                <MenuItem Name="takesem" Header="TakeSem" Click="MenuItemClick" />
+                <MenuItem Name="releasesem" Header="ReliaseSem" Click="MenuItemClick" />
+                <MenuItem Name="closesem" Header="CloseSem" Click="MenuItemClick" />
+                <MenuItem Name="existsem" Header="IsExistSem" Click="MenuItemClick" />-->
+                
+            </Menu>
+        </DockPanel>
+        <c:TabControlEx x:Name="TabControl" Style="{StaticResource TabControlStyle}" >
+            <!--<TabItem Header="image" ContentTemplate="{StaticResource ImageContent}" />
+            <TabItem Header="text" ContentTemplate="{StaticResource TextContent}" />-->
+            
+            <!--<TabItem Header="Unselect test" />
+            <TabItem Header="Select test" IsSelected="True" />
+            <TabItem Header="Unselect test 1" />
+            <TabItem Header="Unselect test 2" />
+            <TabItem Header="Unselect test 3" />-->
+        </c:TabControlEx>
+    </DockPanel>
+</Window>

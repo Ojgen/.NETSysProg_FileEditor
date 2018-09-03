@@ -1,0 +1,343 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:code="clr-namespace:SystemPr.Course.Code"
+                    xmlns:c="clr-namespace:SystemPr.Course.Controls"
+                    
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:course="clr-namespace:SystemPr.Course"
+                    xmlns:vm="clr-namespace:SystemPr.Course.ViewModels"
+                    >
+
+    <code:RevertBooleanConvertor x:Key="RevertBoolConvert" />
+    <code:BooleanToVisibility x:Key="BoolToVisConvert" />
+    <code:RadioButtonCheckedConverter x:Key="RadioBtnContert" />
+    <code:StringToResourseConverter x:Key="StrToResourseConvert" />
+
+    
+    
+    
+    <sys:Boolean x:Key="True">True</sys:Boolean>
+    <sys:Boolean x:Key="False">False</sys:Boolean>
+
+
+
+    <SolidColorBrush x:Key="DefaultColor" Color="#ffd4d0c8" />
+    <SolidColorBrush x:Key="BackgroundTabPanelColor" Color="#aaaaaa" />
+    
+    
+    
+    <GeometryGroup x:Key="CloseIconGeometry">
+        <PathGeometry Figures="M 0.296523,81.8969L 15.5669,97.1673L 48.7468,63.9875L 81.8969,97.1673L 97.1674,81.8969L 63.9875,48.7467L 97.1674,15.5669L 81.8969,0.296509L 48.7468,33.4763L 15.5669,0.296509L 0.296523,15.5669L 33.4763,48.7467L 0.296523,81.8969 Z " />
+    </GeometryGroup>
+    <GeometryGroup x:Key="NextIconGeometry">
+        <PathGeometry Figures="M 93.972,102.656L 130.972,70.6394L 93.972,38.5855L 56.9722,6.53156L 56.9722,49.3456L 40.7753,35.3008L 0,-6.10352e-005L 0,70.6394L 0,141.241L 40.7753,105.94L 56.9722,91.8954L 56.9722,134.71L 93.972,102.656 Z " />
+    </GeometryGroup>
+    <GeometryGroup x:Key="PrevIconGeometry">
+        <PathGeometry Figures="M 76.528,95.0289L 93.2579,109.536L 135.422,146.048L 135.422,73.0238L 135.422,3.05176e-005L 93.2579,36.5119L 76.528,51.0187L 76.528,6.74472L 38.2452,39.9031L 0,73.0238L 38.2452,106.145L 76.528,139.265L 76.528,95.0289 Z "/>
+    </GeometryGroup>
+
+    <GeometryGroup x:Key="LeftArrowIconGeometry">
+        <PathGeometry Figures="M 52.4742,77.035L 147.214,77.035L 147.214,49.6113L 52.4742,49.6113L 82.7232,19.4L 63.3232,-3.05176e-005L 0,63.3232L 63.3232,126.684L 82.7232,107.284L 52.4742,77.035 Z "/>
+    </GeometryGroup>
+    <GeometryGroup x:Key="RightArrowIconGeometry">
+        <PathGeometry Figures="M 94.7399,49.649L -1.39788e-006,49.649L -1.39788e-006,77.0727L 94.7399,77.0727L 64.491,107.284L 83.891,126.684L 147.214,63.3609L 83.891,3.05176e-005L 64.491,19.4001L 94.7399,49.649 Z "/>
+    </GeometryGroup>
+
+
+
+
+    <ControlTemplate x:Key="FlatIconBtnTempl" TargetType="Button">
+        <Grid x:Name="grid" Background="{TemplateBinding Background}" >
+            <!--Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"-->
+            <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" />
+            <Path x:Name="shape" Stretch="Uniform" Margin="{TemplateBinding Padding}" 
+                  Fill="{TemplateBinding Foreground}" Data="{TemplateBinding Content}" >
+            </Path>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="shape" Property="Fill" Value="Black" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+
+
+
+
+
+    <!--<Style x:Key="TabListBtnStyle" TargetType="MenuItem">
+        <Setter Property="Height" Value="26" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Background" Value="{StaticResource DefaultColor}" />
+        <Setter Property="Foreground" Value="DimGray" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuItem">
+                    <Grid x:Name="grid" Background="{TemplateBinding Background}" >
+                        <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" />
+                        <Path x:Name="shape" Stretch="Uniform" Margin="{TemplateBinding Padding}" 
+                  Fill="{TemplateBinding Foreground}" Data="{TemplateBinding Header}" >
+                        </Path>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="shape" Property="Fill" Value="Black" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TabListStyle}" />
+    </Style>
+
+
+    <Style x:Key="TabListStyle" TargetType="ItemsControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+
+
+
+
+
+
+    <!-- tab control styles -->
+    
+    
+    <c:ImageTabContent x:Key="ImageTabContent" />
+    
+    
+    <sys:Double x:Key="TabPanelHeight">30</sys:Double> 
+    
+    
+    <Style x:Key="TabControlBtnStyle" TargetType="Button">
+        <Setter Property="Height" Value="26" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Template" Value="{StaticResource FlatIconBtnTempl}" />
+        <Setter Property="Background" Value="{StaticResource DefaultColor}" />
+        <Setter Property="Foreground" Value="DimGray" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    
+    <Style x:Key="TabControlStyle" TargetType="c:TabControlEx">
+        <Setter Property="Background" Value="{StaticResource DefaultColor}" />
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="c:TabControlEx" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <DockPanel Background="{StaticResource BackgroundTabPanelColor}" Height="{StaticResource TabPanelHeight}">
+                            
+                            <!--<Button DockPanel.Dock="Right" Content="{StaticResource PrevIconGeometry}" Style="{StaticResource TabControlBtnStyle}" Margin="2"  />-->
+                            <Button DockPanel.Dock="Right" Content="{StaticResource RightArrowIconGeometry}"
+                    Style="{StaticResource TabControlBtnStyle}" Margin="0 2" 
+                    Command="{Binding ScrollTabsCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type c:TabControlEx}}}"                                
+                    CommandParameter="{StaticResource True}" />
+                            <Button DockPanel.Dock="Right" Content="{StaticResource LeftArrowIconGeometry}"
+                    Style="{StaticResource TabControlBtnStyle}" Margin="2" 
+                    Command="{Binding ScrollTabsCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type c:TabControlEx}}}"                                
+                    CommandParameter="{StaticResource False}" />
+
+                            <!--<Menu DockPanel.Dock="Right" >
+                                <MenuItem Style="{StaticResource TabListBtnStyle}"  Header="{StaticResource PrevIconGeometry}"  Margin="2"
+             ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type c:TabControlEx}}, Path=Items}">
+                                </MenuItem>
+                            </Menu>-->
+
+
+                            <ScrollViewer Name="sw" DockPanel.Dock="Left" VerticalAlignment="Top" Height="{StaticResource TabPanelHeight}" 
+                    Margin="10 0 -1 0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                          
+                                          >
+
+                                <TabPanel x:Name="HeaderPanel" Panel.ZIndex ="1" KeyboardNavigation.TabIndex="1"
+                                  Background="{StaticResource BackgroundTabPanelColor}" IsItemsHost="true" />
+                                
+                            </ScrollViewer>
+
+                        </DockPanel>
+                        <Grid Grid.Row="1" Background="{TemplateBinding Background}">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              Margin="{TemplateBinding Padding}" ContentSource="SelectedContent"
+
+                                              
+                                              />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+       
+        
+        <!--<Setter Property="ItemTemplate" >
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid x:Name="Panel" MinWidth="50" Height="30" >
+                        <TextBlock Text="{Binding Header}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>-->
+    </Style>
+
+
+
+
+
+    <!-- === -->
+
+    <DataTemplate x:Key="TabDataTemplate" >
+        <DataTemplate.Resources>
+            <code:BoolToObjectConverter x:Key="IsSaveCharConvert" TrueObject="" FalseObject="*" />
+
+            
+            <!--<BeginStoryboard x:Key="">
+                <Storyboard TargetProperty="Width" TargetName="helloButton">
+                    <DoubleAnimation From="70" To="150"
+                                         AutoReverse="True"
+                                         RepeatBehavior="0:0:10"
+                                         Duration="0:0:3"
+                                         Completed="ButtonAnimation_Completed" />
+                </Storyboard>
+            </BeginStoryboard>-->
+        </DataTemplate.Resources>
+        <Grid x:Name="grid">
+            <Grid.ToolTip>
+                <Run Text="{Binding Path}" />                
+            </Grid.ToolTip>
+            <TextBlock>
+                <Run Text="{Binding IsSave, Converter={StaticResource IsSaveCharConvert}}" FontSize="14" />
+                <Run Text="{Binding Header}" />
+            </TextBlock>
+
+
+        </Grid>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding IsSignal}" Value="True">
+                <!--<Setter TargetName="grid" Property="Background" Value="DarkRed" />-->   
+                <!--<DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetName="grid">
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" 
+                                             AutoReverse="True" Duration="0:0:0.5" RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>-->
+            </DataTrigger>
+
+            <!--<DataTrigger Binding="{Binding Path=IsSelected, 
+                RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+
+
+            </DataTrigger>-->
+
+
+            <!--IsSignal-->
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    
+    <DataTemplate x:Key="ImageContent" DataType="{x:Type vm:TabImageViewModel}">
+        <c:ImageTabContent />
+    </DataTemplate>
+
+    <DataTemplate x:Key="TextContent" >
+        <Grid>
+            <TextBox TextWrapping="WrapWithOverflow"
+                     VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"
+                Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="LoadContent" >
+        <Grid>
+            <TextBlock FontSize="36">Load...</TextBlock>
+        </Grid>
+    </DataTemplate>
+
+    <!-- ==== -->
+    
+
+    <Style TargetType="TabItem" >
+        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"></Setter>
+        <Setter Property="ContentTemplate" Value="{Binding DataTemplate, Converter={StaticResource StrToResourseConvert}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+
+                    <Grid x:Name="Panel" MinWidth="50" Height="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border x:Name="sep" Grid.Column="1" BorderThickness="0 0 1 0" BorderBrush="#888888" />
+
+                        <ContentPresenter x:Name="ContentSite"  Grid.Column="0"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                         Margin="4 0" ContentTemplate="{StaticResource TabDataTemplate}"
+                                        Width="120" />
+
+                        <Button Template="{StaticResource FlatIconBtnTempl}" Grid.Column="1"
+                            Height="16" Width="16" Margin="4 0" Padding="4" BorderBrush="#888888"
+                            Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                            Foreground="DimGray" BorderThickness="2"
+                            Content="{StaticResource CloseIconGeometry}"
+                                
+                        Command="{Binding CloseTabCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type c:TabControlEx}}}"                                
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabItem}}}" />
+                    </Grid>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Panel" Property="Background" Value="{StaticResource DefaultColor}" />
+
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="Panel" Property="Background" Value="#aaaaaa" />
+                        </Trigger>
+
+
+
+                        <DataTrigger Binding="{Binding IsSignal}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetName="Panel">
+                                        <ColorAnimation From="#aaaaaa" To="CadetBlue" 
+                                                AutoReverse="True" Duration="0:0:0.5" RepeatBehavior="Forever" 
+                                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                    
+                    
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    
+
+
+    
+</ResourceDictionary>

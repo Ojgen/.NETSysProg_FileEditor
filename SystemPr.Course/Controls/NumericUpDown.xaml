@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="SystemPr.Course.Controls.NumericUpDown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" x:Name="control"
+             xmlns:code="clr-namespace:SystemPr.Course.Code"
+             d:DesignHeight="50" d:DesignWidth="120" Loaded="ControlLoaded" MouseWheel="ControlMouseWheel">
+    
+    <UserControl.Resources >
+        <SolidColorBrush x:Key="BtnBgColor" Color="Transparent" />
+        <SolidColorBrush x:Key="BtnFgColor" Color="DimGray" />
+        <SolidColorBrush x:Key="BtnSelectBgColor" Color="#444" />
+        
+        
+        <code:NumberFromPercentConverter x:Key="NumFromPercentConvert" />
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="{Binding ElementName=control, Path=Height, Converter={StaticResource NumFromPercentConvert}, ConverterParameter=50}" />
+            <Setter Property="Width" Value="{Binding ElementName=control, Path=Height}" />
+            <Setter Property="Foreground" Value="{Binding ElementName=control, Path=Background}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Polygon x:Name="arrow" Stretch="Fill" Fill="{StaticResource BtnFgColor}" 
+                                     Height="{TemplateBinding Height, Converter={StaticResource NumFromPercentConvert}, ConverterParameter=70}"
+                                     Width="{TemplateBinding Height, Converter={StaticResource NumFromPercentConvert}, ConverterParameter=70}" 
+                                     HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                <Polygon.Style>
+                                    <Style TargetType="Polygon">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                                AncestorType={x:Type Button}}, Path=Name}" Value="up">
+                                                <Setter Property="Points" Value="50,0 100,100 0,100" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                                AncestorType={x:Type Button}}, Path=Name}" Value="down">
+                                                <Setter Property="Points" Value="0,0 100,0 50,100" />
+                                            </DataTrigger> 
+                                        </Style.Triggers>
+                                    </Style>
+                                </Polygon.Style>
+                            </Polygon>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{StaticResource BtnSelectBgColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>    
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="{Binding ElementName=control, Path=Height}" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="value" Grid.RowSpan="2" BorderThickness="0" 
+            FontSize="{Binding ElementName=control, Path=FontSize}"
+            HorizontalAlignment="Center" VerticalAlignment="Center" 
+            Foreground="{Binding ElementName=control, Path=Foreground}"
+            Background="{Binding ElementName=control, Path=Background}"
+            IsReadOnly="True" Cursor="Arrow" 
+                 
+                 Text="{Binding ElementName=control, Path=Value}" />
+        
+        <Button Grid.Row="0" Grid.Column="1" Name="up" Click="ButtonClick" />
+        <Button Grid.Row="1" Grid.Column="1" Name="down" Click="ButtonClick" />
+
+        <Border Grid.ColumnSpan="2" Grid.RowSpan="2"
+            BorderBrush="{Binding ElementName=control, Path=BorderBrush}"
+                BorderThickness="{Binding ElementName=control, Path=BorderThickness}" />
+    </Grid>
+</UserControl>
